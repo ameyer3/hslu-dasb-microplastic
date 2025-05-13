@@ -6,11 +6,11 @@ library(dplyr)
 library(nnet)
 library(tidyr)
 
-source("helpers-visualize-forecasting.R")
-source("helpers-visualize-attributes.R")
-source("helpers-visualize-correlations.R")
-source("helpers-visualize-buoyes.R")
-source("helpers-visualize-movement.R")
+source("helpers/visualize-forecasting.R")
+source("helpers/visualize-attributes.R")
+source("helpers/visualize-correlations.R")
+source("helpers/visualize-buoyes.R")
+source("helpers/visualize-movement.R")
 
 currents_and_microplastics <- read_parquet("datasources/currents_with_microplastics.parquet")
 regions <- c(
