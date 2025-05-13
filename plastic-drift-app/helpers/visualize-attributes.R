@@ -14,9 +14,9 @@ plot_ocean_measurements_global <- function(selected_attribute, show_microplastic
     background_image(equirectangular_projection) +
     coord_fixed(ratio = 1, xlim = c(-180, 180), ylim = c(-90, 90), expand = FALSE, clip = "on") +
     geom_point(
-        data = data, aes(x = lon, y = lat, fill = !!sym(selected_attribute)),
-        shape = 21, size = 3, alpha = 0.1, color = "black", stroke = 0.3
-      ) +
+      data = data, aes(x = lon, y = lat, fill = !!sym(selected_attribute)),
+      shape = 21, size = 3, alpha = 0.1, color = "black", stroke = 0.3
+    ) +
     scale_fill_viridis_c(name = paste("Currents: ", selected_attribute), option = "C") +
     scale_color_manual(
       name = "Microplastic Density Class",
