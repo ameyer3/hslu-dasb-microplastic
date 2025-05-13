@@ -53,11 +53,13 @@ avg_concentration <- df_filtered %>%
 
 plot_buoyes_movement_bottom_microplastic <- function(number) {
   req(number)
+  ncol <- 3
+  nrow <- ceiling(number / ncol)
 
   ggplot(df_filtered %>% filter(id %in% tail(avg_concentration, number)$id), aes(x = lon, y = lat, group = id)) +
     geom_path(color = "grey70") +
     geom_point(aes(color = Concentration.Class), size = 1.5, alpha = 0.9) +
-    facet_wrap(~id, scales = "free") +
+    facet_wrap(~id, ncol = ncol, nrow = nrow, scale = "free") +
     theme_minimal() +
     scale_color_manual(
       name = "Color mapping",
@@ -76,10 +78,13 @@ plot_buoyes_movement_bottom_microplastic <- function(number) {
 }
 
 plot_buoyes_movement_top_microplastic <- function(number) {
+  req(number)
+  ncol <- 3
+  nrow <- ceiling(number / ncol)
   ggplot(df_filtered %>% filter(id %in% head(avg_concentration, number)$id), aes(x = lon, y = lat, group = id)) +
     geom_path(color = "grey70") +
     geom_point(aes(color = Concentration.Class), size = 1.5, alpha = 0.9) +
-    facet_wrap(~id, scales = "free") +
+    facet_wrap(~id, ncol = ncol, nrow = nrow, scale = "free") +
     theme_minimal() +
     scale_color_manual(
       name = "Color mapping",

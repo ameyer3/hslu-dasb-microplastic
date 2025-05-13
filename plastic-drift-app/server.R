@@ -332,15 +332,24 @@ shinyServer(function(input, output) {
   ####################### Buoys movement #####################
   ############################################################
 
+  ncol <- 3
+  top_height <- reactive({
+    nrow <- ceiling(input$nr_of_buoys_for_movement_top / ncol)
+    nrow * 300
+  })
   output$top_buoys_movement <- renderPlot({
     plot_buoyes_movement_top_microplastic(
       number = input$nr_of_buoys_for_movement_top
     )
-  })
+  }, height = top_height)
 
+  bottom_height <- reactive({
+    nrow <- ceiling(input$nr_of_buoys_for_movement_bottom / ncol)
+    nrow * 300
+  })
   output$bottom_buoys_movement <- renderPlot({
     plot_buoyes_movement_bottom_microplastic(
       number = input$nr_of_buoys_for_movement_bottom
     )
-  })
+  }, height = bottom_height)
 })

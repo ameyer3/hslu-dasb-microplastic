@@ -230,18 +230,24 @@ shinyUI(fluidPage(
     ),
     tabPanel(
       "Buoys movement",
-      h3("Movement analyse of buoys"),
-      h4("Buoys with the most microplastics on average"),
-      sliderInput("nr_of_buoys_for_movement_top", "Number of Buoys:",
-        min = 1, max = 25, value = 10
+      h3("Movement Analysis of Buoys"),
+      fluidRow(
+        column(6,
+          h4("Buoys with the most microplastics on average"),
+          sliderInput("nr_of_buoys_for_movement_top", "Number of Buoys:",
+            min = 1, max = 25, value = 10
+          ),
+          plotOutput("top_buoys_movement")
+        ),
+        column(6,
+          h4("Buoys with the least microplastics on average"),
+          sliderInput("nr_of_buoys_for_movement_bottom", "Number of Buoys:",
+            min = 1, max = 25, value = 10
+          ),
+          plotOutput("bottom_buoys_movement")
+        )
       ),
-      plotOutput("top_buoys_movement"),
       br(),
-      h4("Buoys with the least microplastics on average"),
-      sliderInput("nr_of_buoys_for_movement_bottom", "Number of Buoys:",
-        min = 1, max = 25, value = 10
-      ),
-      plotOutput("bottom_buoys_movement"),
     ),
     tabPanel(
       "PLACEHOLDER",
