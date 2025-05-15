@@ -6,11 +6,11 @@ library(dplyr)
 library(nnet)
 library(tidyr)
 
-source("helpers-visualize-forecasting.R")
-source("helpers-visualize-attributes.R")
-source("helpers-visualize-correlations.R")
-source("helpers-visualize-buoyes.R")
-source("helpers-visualize-movement.R")
+source("helpers/visualize-forecasting.R")
+source("helpers/visualize-attributes.R")
+source("helpers/visualize-correlations.R")
+source("helpers/visualize-buoyes.R")
+source("helpers/visualize-movement.R")
 
 currents_and_microplastics <- read_parquet("datasources/currents_with_microplastics.parquet")
 regions <- c(
@@ -213,11 +213,11 @@ shinyServer(function(input, output) {
         fill = "Predicted Class"
       )
   })
-output$model_prediction_plot <- renderPlot({
-  selected_predictor <- input$selected_predictor
-  new_data_predict <- generate_prediction_data(selected_model_obj(), test_data, selected_predictor)
-  create_prediction_plot(selected_model_obj(), new_data_predict, selected_predictor)
-})
+  output$model_prediction_plot <- renderPlot({
+    selected_predictor <- input$selected_predictor
+    new_data_predict <- generate_prediction_data(selected_model_obj(), test_data, selected_predictor)
+    create_prediction_plot(selected_model_obj(), new_data_predict, selected_predictor)
+  })
 
   output$interaction_model_definitions <- renderPrint({
     model_texts <- c(
@@ -306,7 +306,7 @@ output$model_prediction_plot <- renderPlot({
     cat(paste(model_texts, collapse = "\n\n"), sep = "")
   })
 
-    output$anova_all_table <- renderTable({
+  output$anova_all_table <- renderTable({
     anova_df <- as.data.frame(anova_all_output)
     anova_df$Model <- rownames(anova_df)
     rownames(anova_df) <- NULL
@@ -325,22 +325,31 @@ output$model_prediction_plot <- renderPlot({
     data.frame(
       Model = c("model_3", "model_interaction_4", "model_transformed_extended"),
       BIC = bic_all_values$BIC
-  )})
-  
+    )
+  })
+
   ############################################################
   ####################### Buoys movement #####################
   ############################################################
-  
+
+  ncol <- 3
+  top_height <- reactive({
+    nrow <- ceiling(input$nr_of_buoys_for_movement_top / ncol)
+    nrow * 300
+  })
   output$top_buoys_movement <- renderPlot({
     plot_buoyes_movement_top_microplastic(
       number = input$nr_of_buoys_for_movement_top
     )
+  }, height = top_height)
+
+  bottom_height <- reactive({
+    nrow <- ceiling(input$nr_of_buoys_for_movement_bottom / ncol)
+    nrow * 300
   })
-  
   output$bottom_buoys_movement <- renderPlot({
     plot_buoyes_movement_bottom_microplastic(
       number = input$nr_of_buoys_for_movement_bottom
     )
-  })
+  }, height = bottom_height)
 })
-

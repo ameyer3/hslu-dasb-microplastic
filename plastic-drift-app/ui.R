@@ -117,8 +117,9 @@ shinyUI(fluidPage(
       ),
       h3("Linear Model Evaluation"),
       selectInput("selected_model", "Choose a Model:",
-            choices = c("Model 3" = "model_3", "Model 5" = "model_5"),
-            selected = "model_3"),
+        choices = c("Model 3" = "model_3", "Model 5" = "model_5"),
+        selected = "model_3"
+      ),
       fluidRow(
         column(
           6,
@@ -135,14 +136,15 @@ shinyUI(fluidPage(
       plotOutput("prediction_density_plot_test"),
       h4("Predicted Probability Plot"),
       sidebarLayout(
-  sidebarPanel(
-    selectInput("selected_predictor", "Select Predictor:",
-                choices = c("measurement_count", "speed_sum", "buoy_count", "speed_avg"),
-                selected = "measurement_count")
-  ),
-  mainPanel(
-    plotOutput("model_prediction_plot")
-  )
+        sidebarPanel(
+          selectInput("selected_predictor", "Select Predictor:",
+            choices = c("measurement_count", "speed_sum", "buoy_count", "speed_avg"),
+            selected = "measurement_count"
+          )
+        ),
+        mainPanel(
+          plotOutput("model_prediction_plot")
+        )
       ),
       h3("Interaction Models"),
       verbatimTextOutput("interaction_model_definitions"),
@@ -221,24 +223,31 @@ shinyUI(fluidPage(
           3,
           h4("BIC Values"),
           tableOutput("bic_all_table")
-        )),
+        )
+      ),
       h4("Predicted vs. Actual Concentration (Transformed Model)"),
       plotOutput("transformed_model_prediction_plot")
     ),
     tabPanel(
       "Buoys movement",
-      h3("Movement analyse of buoys"),
-      h4("Buoys with the most microplastics on average"),
-      sliderInput("nr_of_buoys_for_movement_top", "Number of Buoys:",
-                  min = 1, max = 25, value = 10
+      h3("Movement Analysis of Buoys"),
+      fluidRow(
+        column(6,
+          h4("Buoys with the most microplastics on average"),
+          sliderInput("nr_of_buoys_for_movement_top", "Number of Buoys:",
+            min = 1, max = 25, value = 10
+          ),
+          plotOutput("top_buoys_movement")
+        ),
+        column(6,
+          h4("Buoys with the least microplastics on average"),
+          sliderInput("nr_of_buoys_for_movement_bottom", "Number of Buoys:",
+            min = 1, max = 25, value = 10
+          ),
+          plotOutput("bottom_buoys_movement")
+        )
       ),
-      plotOutput("top_buoys_movement"),
       br(),
-      h4("Buoys with the least microplastics on average"),
-      sliderInput("nr_of_buoys_for_movement_bottom", "Number of Buoys:",
-                  min = 1, max = 25, value = 10
-      ),
-      plotOutput("bottom_buoys_movement"),
     ),
     tabPanel(
       "PLACEHOLDER",

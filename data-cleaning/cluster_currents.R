@@ -50,7 +50,6 @@ currents_binned <- currents %>%
 
 currents_binned <- left_join(bin_centers, currents_binned, by = "bin_id")
 
-# TODO: is this necessary? -> rather remove those
 currents_binned[is.na(currents_binned)] <- 0
 
 currents_binned_table <- arrow_table(
