@@ -52,7 +52,7 @@ plot_ocean_measurements_regional <- function(selected_attribute, title, data) {
   ggplot() +
     coord_fixed(ratio = 1, xlim = lon_range, ylim = lat_range, expand = FALSE, clip = "on") +
     geom_point(
-      data = data, aes(x = lon, y = lat, fill = !!sym(fill_var)),
+      data = data, aes(x = lon, y = lat, fill = !!sym(selected_attribute)),
       shape = 21, size = 3, alpha = 0.4, color = "black", stroke = 0.3
     ) +
     scale_fill_viridis_c(name = paste("Currents: ", selected_attribute), option = "C") +

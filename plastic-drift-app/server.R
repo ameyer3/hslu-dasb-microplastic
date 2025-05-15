@@ -47,7 +47,7 @@ shinyServer(function(input, output) {
     plot_ocean_measurements_regional(
       selected_attribute = input$selected_var_regional,
       title = paste(input$selected_region, "-", input$selected_var_regional),
-      data = region_data,
+      data = region_data
     )
   })
 
