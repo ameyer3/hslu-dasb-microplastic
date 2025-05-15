@@ -78,6 +78,27 @@ shinyUI(fluidPage(
       )
     ),
     tabPanel(
+      "Buoys movement",
+      h3("Movement Analysis of Buoys"),
+      fluidRow(
+        column(6,
+          h4("Buoys with the most microplastics on average"),
+          sliderInput("nr_of_buoys_for_movement_top", "Number of Buoys:",
+            min = 1, max = 25, value = 10
+          ),
+          plotOutput("top_buoys_movement")
+        ),
+        column(6,
+          h4("Buoys with the least microplastics on average"),
+          sliderInput("nr_of_buoys_for_movement_bottom", "Number of Buoys:",
+            min = 1, max = 25, value = 10
+          ),
+          plotOutput("bottom_buoys_movement")
+        )
+      ),
+      br(),
+    ),
+    tabPanel(
       "Modelling",
       h3("Distribution on the training data"),
       tableOutput("summary_table"),
@@ -227,31 +248,6 @@ shinyUI(fluidPage(
       ),
       h4("Predicted vs. Actual Concentration (Transformed Model)"),
       plotOutput("transformed_model_prediction_plot")
-    ),
-    tabPanel(
-      "Buoys movement",
-      h3("Movement Analysis of Buoys"),
-      fluidRow(
-        column(6,
-          h4("Buoys with the most microplastics on average"),
-          sliderInput("nr_of_buoys_for_movement_top", "Number of Buoys:",
-            min = 1, max = 25, value = 10
-          ),
-          plotOutput("top_buoys_movement")
-        ),
-        column(6,
-          h4("Buoys with the least microplastics on average"),
-          sliderInput("nr_of_buoys_for_movement_bottom", "Number of Buoys:",
-            min = 1, max = 25, value = 10
-          ),
-          plotOutput("bottom_buoys_movement")
-        )
-      ),
-      br(),
-    ),
-    tabPanel(
-      "PLACEHOLDER",
-      h3("More cool stuff coming soon!")
     ),
   ),
 ))
