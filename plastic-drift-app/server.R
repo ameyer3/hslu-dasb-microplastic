@@ -239,14 +239,14 @@ shinyServer(function(input, output) {
 
   output$aic_interaction_table <- renderTable({
     data.frame(
-      Model = c("model_3", "model_interaction_1", "model_interaction_2", "model_interaction_3", "model_interaction_4"),
+      Model = c("model_5", "model_interaction_1", "model_interaction_2", "model_interaction_3", "model_interaction_4"),
       AIC = aic_interaction_values$AIC
     )
   })
 
   output$bic_interaction_table <- renderTable({
     data.frame(
-      Model = c("model_3", "model_interaction_1", "model_interaction_2", "model_interaction_3", "model_interaction_4"),
+      Model = c("model_5", "model_interaction_1", "model_interaction_2", "model_interaction_3", "model_interaction_4"),
       BIC = bic_interaction_values$BIC
     )
   })
@@ -316,14 +316,14 @@ shinyServer(function(input, output) {
 
   output$aic_all_table <- renderTable({
     data.frame(
-      Model = c("model_3", "model_interaction_4", "model_transformed_extended"),
+      Model = c("model_5", "model_interaction_4", "model_transformed_extended"),
       AIC = aic_all_values$AIC
     )
   })
 
   output$bic_all_table <- renderTable({
     data.frame(
-      Model = c("model_3", "model_interaction_4", "model_transformed_extended"),
+      Model = c("model_5", "model_interaction_4", "model_transformed_extended"),
       BIC = bic_all_values$BIC
     )
   })
