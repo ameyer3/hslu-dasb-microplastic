@@ -97,15 +97,16 @@ shinyServer(function(input, output) {
         hjust = ifelse(all_regions_df$Correlation > 0, -0.1, 1.1),
         vjust = 0.5,
         angle = 90,
-        size = 3
+        size = 4
       ) +
       labs(
         title = "Correlation of Attributes with Microplastic Density by Region",
         x = "Current Attribute",
         y = "Correlation Coefficient"
       ) +
+      coord_cartesian(clip = "off") +
       theme_minimal() +
-      theme(axis.text.x = element_text(angle = 45, hjust = 1))
+      theme(axis.text.x = element_text(hjust = 1, size = 15))
   })
   output$sample_buoys <- renderPlot(
     plot_sample_buoys(currents_by_buoy_time, input$nr_of_buoys)
