@@ -85,18 +85,18 @@ create_prediction_plot <- function(model, new_data_predict, predictor_to_visuali
 }
 
 # Interaction
-anova_interaction_output <- anova(model_3, model_interaction_1, model_interaction_2, model_interaction_3, model_interaction_4)
+anova_interaction_output <- anova(model_5, model_interaction_1, model_interaction_2, model_interaction_3, model_interaction_4)
 
-aic_interaction_values <- AIC(model_3, model_interaction_1, model_interaction_2, model_interaction_3, model_interaction_4)
-bic_interaction_values <- BIC(model_3, model_interaction_1, model_interaction_2, model_interaction_3, model_interaction_4)
+aic_interaction_values <- AIC(model_5, model_interaction_1, model_interaction_2, model_interaction_3, model_interaction_4)
+bic_interaction_values <- BIC(model_5, model_interaction_1, model_interaction_2, model_interaction_3, model_interaction_4)
 
 best_interactive_model <- model_interaction_4
 
 # Extended
-anova_all_output <- anova(model_3, model_interaction_4, model_transformed_extended)
+anova_all_output <- anova(model_5, model_interaction_4, model_transformed_extended)
 
-aic_all_values <- AIC(model_3, model_interaction_4, model_transformed_extended)
-bic_all_values <- BIC(model_3, model_interaction_4, model_transformed_extended)
+aic_all_values <- AIC(model_5, model_interaction_4, model_transformed_extended)
+bic_all_values <- BIC(model_5, model_interaction_4, model_transformed_extended)
 
 evaluate_interaction_model <- function(model, test_data) {
   predicted_classes_interaction_test <- predict(model, newdata = test_data)
