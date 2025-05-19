@@ -202,17 +202,9 @@ shinyServer(function(input, output) {
   })
 
   output$prediction_density_plot_test <- renderPlot({
-    predicted_classes_test <- predict(selected_model_obj(), newdata = test_data)
-    ggplot(test_data, aes(x = measurement_count, fill = predicted_classes_test)) +
-      geom_density(alpha = 0.5) +
-      facet_wrap(~Concentration.Class) +
-      labs(
-        title = "Predicted vs. Actual Concentration by Measurement Count (Test Data)",
-        x = "Measurement Count",
-        y = "Density",
-        fill = "Predicted Class"
-      )
+    plot_prediction_density(selected_model_obj(), test_data, "Predicted vs. Actual Concentration by Measurement Count (Test Data)")
   })
+
   output$model_prediction_plot <- renderPlot({
     selected_predictor <- input$selected_predictor
     new_data_predict <- generate_prediction_data(selected_model_obj(), test_data, selected_predictor)
@@ -262,7 +254,7 @@ shinyServer(function(input, output) {
   })
 
   output$interaction_prediction_plot <- renderPlot({
-    plot_interaction_predictions(best_interactive_model, test_data)
+    plot_prediction_density(best_interactive_model, test_data, "Predicted vs. Actual Concentration by Measurement Count (Interaction Model)")
   })
 
   output$interaction_plot <- renderPlot({
@@ -281,16 +273,7 @@ shinyServer(function(input, output) {
   })
 
   output$transformed_model_prediction_plot <- renderPlot({
-    predicted_classes_transformed_test <- predict(model_transformed_extended, newdata = test_data)
-    ggplot(test_data, aes(x = measurement_count, fill = predicted_classes_transformed_test)) +
-      geom_density(alpha = 0.5) +
-      facet_wrap(~Concentration.Class) +
-      labs(
-        title = "Predicted vs. Actual Concentration by Measurement Count (Transformed Model)",
-        x = "Measurement Count",
-        y = "Density",
-        fill = "Predicted Class"
-      )
+    plot_prediction_density(model_transformed_extended, test_data, "Predicted vs. Actual Concentration by Measurement Count (Transformed Model)")
   })
 
   output$transformed_model_confusion_matrix <- renderTable({

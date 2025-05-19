@@ -105,13 +105,13 @@ evaluate_interaction_model <- function(model, test_data) {
   return(list(accuracy = accuracy_interaction_test, confusion_matrix = confusion_matrix_interaction))
 }
 
-plot_interaction_predictions <- function(model, test_data) {
+plot_prediction_density <- function(model, test_data, title) {
   predicted_classes_interaction_test <- predict(model, newdata = test_data)
   ggplot(test_data, aes(x = measurement_count, fill = predicted_classes_interaction_test)) +
     geom_density(alpha = 0.5) +
-    facet_wrap(~Concentration.Class) +
+    facet_wrap(~Concentration.Class, ncol = 5) +
     labs(
-      title = "Predicted vs. Actual Concentration by Measurement Count (Interaction Model)",
+      title = title,
       x = "Measurement Count",
       y = "Density",
       fill = "Predicted Class"
