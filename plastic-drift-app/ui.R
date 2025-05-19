@@ -70,15 +70,17 @@ shinyUI(fluidPage(
           )
         ),
         mainPanel(
-          h4("Sample Buoys"),
+          h4("Randomly Selected Buoys"),
+          p("This plot shows randomly selected buoys to visualize the general distribution."),
           plotOutput("sample_buoys"),
-          h4("Largest Buoys"),
+          h4("Buoys With The Most Measurements"),
+          p("This plot shows the buoys with the most amount of measurments."),
           plotOutput("largest_buoys")
         )
       )
     ),
     tabPanel(
-      "Buoys movement",
+      "Buoys Movement",
       h3("Movement Analysis of Buoys"),
       fluidRow(
         column(6,
